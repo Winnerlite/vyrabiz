@@ -29,20 +29,26 @@
         }
 
         /* Welcome/Signup Modal */
-        .welcome-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            padding: 20px;
-        }
+       .welcome-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-scroll-content {
+    max-height: 90vh; /* Limit height */
+    overflow-y: auto; /* Enable vertical scroll */
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
 
         .logo-container {
             margin-bottom: 30px;
@@ -269,21 +275,41 @@
                 font-size: 1.2rem;
             }
         }
+
+
+        @media (max-width: 480px) {
+    .welcome-text {
+        font-size: 1rem;
+    }
+
+    .submit-btn {
+        font-size: 1rem;
+    }
+}
+
+input:invalid {
+    border-color: #ff4d4d;
+}
+input:valid {
+    border-color: var(--primary-color);
+}
     </style>
 </head>
 <body>
+
+
     <!-- Welcome/Signup Modal -->
-    <div class="welcome-modal" id="welcomeModal">
+   <!-- Welcome/Signup Modal -->
+<div class="welcome-modal" id="welcomeModal">
+    <div class="modal-scroll-content">
         <div class="logo-container">
             <div class="logo">VYRA</div>
         </div>
-
         <p class="welcome-text">
             Your smart companion for intercity travel in Nigeria.
             Get real-time metrics and recommendations for the best transport services.
         </p>
-
-        <form class="signup-form" id="signupForm" action="https://formsubmit.co/vyraintercitymetrics@gmail.com" method="POST">
+        <form class="signup-form" id="signupForm" action="https://formsubmit.co/vyraintercitymetrics @gmail.com" method="POST">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_subject" value="New Vyra Signup">
 
@@ -346,6 +372,14 @@
                 </select>
             </div>
 
+            <!-- Newsletter Subscription Checkbox -->
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" name="subscribe" value="yes" checked>
+                    I want to receive email updates and travel tips about intercity services.
+                </label>
+            </div>
+
             <button type="submit" class="submit-btn">Sign Up</button>
         </form>
 
@@ -353,6 +387,7 @@
             <!-- Reviews will be added dynamically -->
         </div>
     </div>
+</div>
 
     <!-- Dashboard (shown after signup) -->
     <div class="dashboard" id="dashboard">
@@ -454,28 +489,38 @@
         }
 
         // Handle form submission
-        document.getElementById('signupForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+       document.getElementById('signupForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent default submission
 
-            // Get form data
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const state = document.getElementById('state').value;
+    const emailInput = document.getElementById('email');
+    const emailError = document.getElementById('emailError');
+    const email = emailInput.value.trim();
 
-            // Save to localStorage
-            localStorage.setItem('vyra_user', JSON.stringify({
-                name,
-                email,
-                state
-            }));
+    // Simple regex for basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-            // Submit form data (this will work with FormSubmit)
-            this.submit();
+    if (!emailRegex.test(email)) {
+        emailError.textContent = 'Please enter a valid email address.';
+        emailInput.focus();
+        return;
+    } else {
+        emailError.textContent = ''; // Clear error
+    }
 
-            // Show dashboard
-            showDashboard(name, state);
-        });
+    // If passes, proceed with saving data and showing dashboard
+    const name = document.getElementById('name').value;
+    const password = document.getElementById('password').value;
+    const state = document.getElementById('state').value;
+
+    localStorage.setItem('vyra_user', JSON.stringify({
+        name,
+        email,
+        state
+    }));
+
+    this.submit(); // Submit form to FormSubmit
+    showDashboard(name, state);
+});
 
         // Show dashboard with user info
         function showDashboard(name, state) {
@@ -558,6 +603,9 @@
             initReviews();
             checkLoggedIn();
         });
+
+
+
     </script>
 </body>
 </html>
