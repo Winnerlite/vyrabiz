@@ -489,23 +489,41 @@ input:valid {
         }
 
         // Handle form submission
-       document.getElementById('signupForm').addEventListener('submit', function(e) {
-    e.preventDefault(); // Prevent default submission
+      document.getElementById('signupForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Stop default form submission
 
     const emailInput = document.getElementById('email');
-    const emailError = document.getElementById('emailError');
+    const emailError = document.getElementById('emailError') || createEmailError();
     const email = emailInput.value.trim();
 
-    // Simple regex for basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!emailRegex.test(email)) {
         emailError.textContent = 'Please enter a valid email address.';
         emailInput.focus();
         return;
-    } else {
-        emailError.textContent = ''; // Clear error
     }
+
+    // If passes, proceed
+    const name = document.getElementById('name').value;
+    const password = document.getElementById('password').value;
+    const state = document.getElementById('state').value;
+
+    localStorage.setItem('vyra_user', JSON.stringify({ name, email, state }));
+
+    // Show dashboard
+    showDashboard(name, state);
+
+    // Optional: Send data manually to FormSubmit (not required if using hidden fields)
+    fetch(this.action, {
+        method: "POST",
+        body: new FormData(this)
+    }).then(() => {
+        console.log("Form submitted successfully");
+    }).catch(err => {
+        console.error("Form submission failed", err);
+    });
+});
 
     // If passes, proceed with saving data and showing dashboard
     const name = document.getElementById('name').value;
