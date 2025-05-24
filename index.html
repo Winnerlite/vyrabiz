@@ -1117,51 +1117,55 @@ input:valid {
         }
 
         // Handle form submission
-   // Handle form submission
-document.getElementById('signupForm').addEventListener('submit', function(e) {
+     document.getElementById('signupForm').addEventListener('submit', function(e) {
     e.preventDefault(); // Stop default form submission
 
-    // Get form values
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const state = document.getElementById('state').value;
+    const emailInput = document.getElementById('email');
+    const emailError = document.getElementById('emailError') || createEmailError();
+    const email = emailInput.value.trim();
 
-    // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
     if (!emailRegex.test(email)) {
-        alert('Please enter a valid email address.');
+        emailError.textContent = 'Please enter a valid email address.';
+        emailInput.focus();
         return;
     }
 
-    // Save user data to localStorage
-    localStorage.setItem('vyra_user', JSON.stringify({
-        name,
-        email,
-        state
-    }));
+    const name = document.getElementById('name').value;
+    const password = document.getElementById('password').value;
+    const state = document.getElementById('state').value;
 
-    // Show dashboard immediately
-    showDashboard(name, state);
+    localStorage.setItem('vyra_user', JSON.stringify({ name, email, state }));
 
-    // Submit form data to Formsubmit in the background
+    // Optional: Show loading message
+    const submitBtn = document.querySelector('.submit-btn');
+    submitBtn.textContent = 'Signing Up...';
+    submitBtn.disabled = true;
+
+    // Prepare form data for submission
+    const formData = new FormData(this);
+
+    // Submit to FormSubmit manually
     fetch(this.action, {
         method: "POST",
-        body: new FormData(this),
+        body: formData,
         headers: {
             'Accept': 'application/json'
         }
     })
     .then(response => {
-        if (!response.ok) {
-            throw new Error('Form submission failed');
+        if (response.ok) {
+            showDashboard(name, state); // Show dashboard after successful submission
+        } else {
+            throw new Error("Form submission failed");
         }
-        console.log('Form submitted successfully');
     })
     .catch(error => {
-        console.error('Error submitting form:', error);
-        // You could show a non-intrusive notification that the form submission failed
-        // but the user is already logged in so we don't need to block them
+        console.error("Form error:", error);
+        emailError.textContent = 'There was an issue submitting the form.';
+        submitBtn.textContent = 'Sign Up';
+        submitBtn.disabled = false;
     });
 });
 
