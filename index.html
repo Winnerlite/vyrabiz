@@ -251,6 +251,7 @@
             padding: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease;
+            cursor: pointer; /* Make cards clickable */
         }
 
         .service-card:hover {
@@ -374,6 +375,29 @@
             overflow-y: auto;
             color: var(--text-color);
             line-height: 1.6;
+        }
+
+        /* Company Modal Styles */
+        .company-modal-content img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            margin: 0 auto 15px;
+            display: block;
+            border-radius: 8px;
+        }
+
+        .company-modal-content .stats {
+            font-size: 1rem;
+            color: var(--text-color);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .company-modal-content .address, .company-modal-content .phone {
+            font-size: 0.95rem;
+            color: var(--text-color);
+            margin-bottom: 10px;
         }
 
         @keyframes slideUp {
@@ -628,6 +652,18 @@
                 </ul>
                 <p>This is a placeholder policy. Update it with your specific terms before going live.</p>
             </div>
+        </div>
+    </div>
+
+    <!-- Company Details Modal -->
+    <div class="modal" id="companyModal">
+        <div class="modal-content company-modal-content">
+            <button class="close-btn" id="closeCompanyModal">×</button>
+            <h2 id="companyName"></h2>
+            <img id="companyImage" src="" alt="Company Image">
+            <p class="stats" id="companyStats"></p>
+            <p class="address" id="companyAddress"></p>
+            <p class="phone" id="companyPhone"></p>
         </div>
     </div>
 
@@ -985,7 +1021,71 @@
             "Ibom Transit": "https://i.ibb.co/svVpc40C/ibom-transit.jpg"
         };
 
-        // Normalize company name for image lookup
+        // Company Details (Addresses and Phone Numbers)
+        const companyDetails = {
+            "God is Good Motors": {
+                "Lagos": {
+                    address: "202, Ikorodu Road, Obanikoro, Lagos",
+                    phone: "+234 813 985 1110"
+                },
+                "Abuja": {
+                    address: "Plot 113, Utako District, Abuja",
+                    phone: "+234 813 985 1110"
+                },
+                "Anambra": {
+                    address: "Aroma Junction, Awka, Anambra",
+                    phone: "+234 813 985 1110"
+                },
+                "Default": {
+                    address: "Contact company for terminal address",
+                    phone: "+234 813 985 1110"
+                }
+            },
+            "ABC Transport": {
+                "Lagos": {
+                    address: "Jibowu Terminal, Jibowu, Lagos",
+                    phone: "+234 803 509 1237"
+                },
+                "Abuja": {
+                    address: "Gwagwalada Terminal, Abuja",
+                    phone: "+234 803 509 1237"
+                },
+                "Anambra": {
+                    address: "Upper Iweka, Onitsha, Anambra",
+                    phone: "+234 803 509 1237"
+                },
+                "Default": {
+                    address: "Contact company for terminal address",
+                    phone: "+234 803 509 1237"
+                }
+            },
+            "GUO Transport": {
+                "Lagos": {
+                    address: "1 Jibowu Street, Jibowu, Yaba, Lagos",
+                    phone: "+234 803 288 9704"
+                },
+                "Abuja": {
+                    address: "Utako Motor Park, Abuja",
+                    phone: "+234 803 288 9704"
+                },
+                "Anambra": {
+                    address: "Ekwulobia Roundabout, Ekwulobia, Anambra",
+                    phone: "+234 803 288 9704"
+                },
+                "Default": {
+                    address: "Contact company for terminal address",
+                    phone: "+234 803 288 9704"
+                }
+            },
+            "Default": {
+                "Default": {
+                    address: "Not available",
+                    phone: "Not available"
+                }
+            }
+        };
+
+        // Normalize company name for image and details lookup
         function normalizeCompanyName(name) {
             const nameMap = {
                 "Guo Transport": "GUO Transport",
@@ -1134,9 +1234,41 @@
                     <img src="${service.image}" alt="${service.name}">
                     <p>${service.name}</p>
                 `;
+                card.addEventListener('click', () => showCompanyModal(service.name, state));
                 servicesContainer.appendChild(card);
             });
             autoScrollServices();
+        }
+
+        // Show company details modal
+        function showCompanyModal(companyName, state) {
+            const companyModal = document.getElementById('companyModal');
+            const companyNameElement = document.getElementById('companyName');
+            const companyImage = document.getElementById('companyImage');
+            const companyStats = document.getElementById('companyStats');
+            const companyAddress = document.getElementById('companyAddress');
+            const companyPhone = document.getElementById('companyPhone');
+
+            if (!companyModal || !companyNameElement || !companyImage || !companyStats || !companyAddress || !companyPhone) {
+                console.error('Company modal elements not found');
+                return;
+            }
+
+            const normalizedName = normalizeCompanyName(companyName);
+            companyNameElement.textContent = normalizedName;
+            companyImage.src = companyImages[normalizedName] || 'https://placeholdr.ai/d690c540-73bb-4af1-8c67-1cb92e256d84/256/256';
+            companyImage.alt = normalizedName;
+
+            // Generate random usage stats
+            const usagePercent = Math.floor(Math.random() * 60) + 40;
+            companyStats.textContent = `Used by ${usagePercent}% of customers`;
+
+            // Get company details
+            const details = companyDetails[normalizedName]?.[state] || companyDetails[normalizedName]?.['Default'] || companyDetails['Default']['Default'];
+            companyAddress.textContent = `Address: ${details.address}`;
+            companyPhone.textContent = `Phone: ${details.phone}`;
+
+            companyModal.style.display = 'flex';
         }
 
         // Auto-scroll the services
@@ -1207,8 +1339,10 @@
             const privacyPolicyModal = document.getElementById('privacyPolicyModal');
             const closePrivacyPolicy = document.getElementById('closePrivacyPolicy');
             const logoutBtn = document.getElementById('logoutBtn');
+            const companyModal = document.getElementById('companyModal');
+            const closeCompanyModal = document.getElementById('closeCompanyModal');
 
-            if (!signupForm || !loginForm || !passwordResetForm || !showLogin || !showSignup || !forgotPassword || !passwordResetModal || !closePasswordReset || !cancelPasswordReset || !userAvatar || !userProfileModal || !closeProfile || !profileState || !profileLogout || !profileDelete || !showPrivacyPolicy || !privacyPolicyModal || !closePrivacyPolicy || !logoutBtn) {
+            if (!signupForm || !loginForm || !passwordResetForm || !showLogin || !showSignup || !forgotPassword || !passwordResetModal || !closePasswordReset || !cancelPasswordReset || !userAvatar || !userProfileModal || !closeProfile || !profileState || !profileLogout || !profileDelete || !showPrivacyPolicy || !privacyPolicyModal || !closePrivacyPolicy || !logoutBtn || !companyModal || !closeCompanyModal) {
                 console.error('One or more elements not found');
                 return;
             }
@@ -1536,6 +1670,17 @@
             privacyPolicyModal.addEventListener('click', (e) => {
                 if (e.target === privacyPolicyModal) {
                     privacyPolicyModal.style.display = 'none';
+                }
+            });
+
+            // Handle company modal close
+            closeCompanyModal.addEventListener('click', () => {
+                companyModal.style.display = 'none';
+            });
+
+            companyModal.addEventListener('click', (e) => {
+                if (e.target === companyModal) {
+                    companyModal.style.display = 'none';
                 }
             });
 
