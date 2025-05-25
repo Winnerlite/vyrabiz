@@ -28,27 +28,26 @@
             overflow-x: hidden;
         }
 
-        /* Welcome/Signup Modal */
-       .welcome-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+        .welcome-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-.modal-scroll-content {
-    max-height: 90vh; /* Limit height */
-    overflow-y: auto; /* Enable vertical scroll */
-    padding: 20px;
-    width: 100%;
-    box-sizing: border-box;
-}
+        .modal-scroll-content {
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
 
         .logo-container {
             margin-bottom: 30px;
@@ -76,11 +75,22 @@
             line-height: 1.6;
         }
 
-        .signup-form {
+        .signup-form, .login-form {
             width: 100%;
             max-width: 400px;
             opacity: 0;
             animation: fadeIn 1s ease-out 1s forwards;
+        }
+
+        .form-toggle {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .form-toggle a {
+            color: var(--secondary-color);
+            text-decoration: underline;
+            cursor: pointer;
         }
 
         .form-group {
@@ -130,7 +140,18 @@
             box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
         }
 
-        /* Reviews Section */
+        .forgot-password {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .forgot-password a {
+            color: var(--secondary-color);
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
         .reviews-container {
             margin-top: 50px;
             width: 100%;
@@ -161,7 +182,6 @@
             color: var(--secondary-color);
         }
 
-        /* Dashboard (shown after signup) */
         .dashboard {
             display: none;
             padding: 20px;
@@ -185,6 +205,12 @@
             align-items: center;
             margin-right: 20px;
             font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .user-avatar:hover {
+            transform: scale(1.1);
         }
 
         .user-info h2 {
@@ -244,7 +270,112 @@
             color: white;
         }
 
-        /* Animations */
+        .logout-btn, .delete-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn {
+            background: linear-gradient(135deg, #ff4d4d, #cc0000);
+            color: white;
+        }
+
+        .delete-btn {
+            background: linear-gradient(135deg, #666, #333);
+            color: white;
+        }
+
+        .logout-btn:hover, .delete-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: var(--dark-bg);
+            padding: 20px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 0 20px rgba(156, 39, 176, 0.3);
+            animation: fadeIn 0.3s ease-out;
+            position: relative;
+        }
+
+        .modal-content h2 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .modal-content p {
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal-content .form-group select {
+            margin-bottom: 20px;
+        }
+
+        .modal-content .error-message, .modal-content .success-message {
+            font-size: 0.9rem;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .error-message {
+            color: #ff4d4d;
+        }
+
+        .success-message {
+            color: #4caf50;
+        }
+
+        .privacy-policy-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: var(--secondary-color);
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .privacy-policy-content {
+            max-height: 60vh;
+            overflow-y: auto;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
         @keyframes slideUp {
             from {
                 transform: translateY(100vh);
@@ -265,7 +396,6 @@
             }
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .logo {
                 font-size: 3rem;
@@ -274,28 +404,33 @@
             .welcome-text {
                 font-size: 1.2rem;
             }
+
+            .modal-content {
+                width: 90%;
+            }
         }
 
         @media (max-width: 480px) {
-    .welcome-text {
-        font-size: 1rem;
-    }
+            .welcome-text {
+                font-size: 1rem;
+            }
 
-    .submit-btn {
-        font-size: 1rem;
-    }
-}
+            .submit-btn {
+                font-size: 1rem;
+            }
+        }
 
-input:invalid {
-    border-color: #ff4d4d;
-}
-input:valid {
-    border-color: var(--primary-color);
-}
+        input:invalid, select:invalid {
+            border-color: #ff4d4d;
+        }
+
+        input:valid, select:valid {
+            border-color: var(--primary-color);
+        }
     </style>
 </head>
 <body>
-    <!-- Welcome/Signup Modal -->
+    <!-- Welcome/Signup/Login Modal -->
     <div class="welcome-modal" id="welcomeModal">
         <div class="modal-scroll-content">
             <div class="logo-container">
@@ -305,10 +440,9 @@ input:valid {
                 Your smart companion for intercity travel in Nigeria.
                 Get real-time metrics and recommendations for the best transport services.
             </p>
-            <form class="signup-form" id="signupForm" action="https://formsubmit.co/vyraintercitymetrics@gmail.com" method="POST">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_subject" value="New Vyra Signup">
-                <input type="hidden" name="_next" value="">
+
+            <!-- Signup Form -->
+            <form class="signup-form" id="signupForm" style="display: block;">
                 <div class="form-group">
                     <label for="name">Full Name</label>
                     <input type="text" id="name" name="name" required>
@@ -367,20 +501,137 @@ input:valid {
                 </div>
                 <div class="form-group">
                     <label>
-                        <input type="checkbox" name="subscribe" value="yes" checked>
+                        <input type="checkbox" id="subscribe" name="subscribe" value="yes" checked>
                         I want to receive email updates and travel tips about intercity services.
                     </label>
                 </div>
                 <button type="submit" class="submit-btn">Sign Up</button>
+                <div class="form-toggle">
+                    <a id="showLogin">Already have an account? Log In</a>
+                </div>
             </form>
 
-            <div class="reviews-container" id="reviewsContainer">
-                <!-- Reviews will be added dynamically -->
+            <!-- Login Form -->
+            <form class="login-form" id="loginForm" style="display: none;">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" name="loginEmail" required>
+                    <div class="error-message" id="loginEmailError" style="color: red; font-size: 0.9rem; margin-top: 5px;"></div>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" name="loginPassword" required>
+                </div>
+                <button type="submit" class="submit-btn">Log In</button>
+                <div class="forgot-password">
+                    <a id="forgotPassword">Forgot Password?</a>
+                </div>
+                <div class="form-toggle">
+                    <a id="showSignup">Need an account? Sign Up</a>
+                </div>
+            </form>
+
+            <div class="reviews-container" id="reviewsContainer"></div>
+        </div>
+    </div>
+
+    <!-- Password Reset Modal -->
+    <div class="modal" id="passwordResetModal">
+        <div class="modal-content">
+            <button class="close-btn" id="closePasswordReset">×</button>
+            <h2>Reset Password</h2>
+            <form id="passwordResetForm">
+                <div class="form-group">
+                    <label for="resetEmail">Email</label>
+                    <input type="email" id="resetEmail" name="resetEmail" required>
+                    <div class="error-message" id="resetEmailError"></div>
+                    <div class="success-message" id="resetSuccess"></div>
+                </div>
+                <button type="submit" class="submit-btn">Send Reset Link</button>
+                <button type="button" class="submit-btn" id="cancelPasswordReset" style="background: linear-gradient(135deg, #666, #333);">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- User Profile Modal -->
+    <div class="modal" id="userProfileModal">
+        <div class="modal-content">
+            <button class="close-btn" id="closeProfile">×</button>
+            <h2>User Profile</h2>
+            <p><strong>Name:</strong> <span id="profileName"></span></p>
+            <p><strong>Email:</strong> <span id="profileEmail"></span></p>
+            <div class="form-group">
+                <label for="profileState">State</label>
+                <select id="profileState" name="profileState">
+                    <option value="">Select your state</option>
+                    <option value="Abia">Abia</option>
+                    <option value="Adamawa">Adamawa</option>
+                    <option value="Akwa Ibom">Akwa Ibom</option>
+                    <option value="Anambra">Anambra</option>
+                    <option value="Bauchi">Bauchi</option>
+                    <option value="Bayelsa">Bayelsa</option>
+                    <option value="Benue">Benue</option>
+                    <option value="Borno">Borno</option>
+                    <option value="Cross River">Cross River</option>
+                    <option value="Delta">Delta</option>
+                    <option value="Ebonyi">Ebonyi</option>
+                    <option value="Edo">Edo</option>
+                    <option value="Ekiti">Ekiti</option>
+                    <option value="Enugu">Enugu</option>
+                    <option value="Gombe">Gombe</option>
+                    <option value="Imo">Imo</option>
+                    <option value="Jigawa">Jigawa</option>
+                    <option value="Kaduna">Kaduna</option>
+                    <option value="Kano">Kano</option>
+                    <option value="Katsina">Katsina</option>
+                    <option value="Kebbi">Kebbi</option>
+                    <option value="Kogi">Kogi</option>
+                    <option value="Kwara">Kwara</option>
+                    <option value="Lagos">Lagos</option>
+                    <option value="Nasarawa">Nasarawa</option>
+                    <option value="Niger">Niger</option>
+                    <option value="Ogun">Ogun</option>
+                    <option value="Ondo">Ondo</option>
+                    <option value="Osun">Osun</option>
+                    <option value="Oyo">Oyo</option>
+                    <option value="Plateau">Plateau</option>
+                    <option value="Rivers">Rivers</option>
+                    <option value="Sokoto">Sokoto</option>
+                    <option value="Taraba">Taraba</option>
+                    <option value="Yobe">Yobe</option>
+                    <option value="Zamfara">Zamfara</option>
+                    <option value="Abuja">Abuja</option>
+                </select>
+            </div>
+            <div style="text-align: center;">
+                <button class="logout-btn" id="profileLogout">Log Out</button>
+                <button class="delete-btn" id="profileDelete">Delete Account</button>
+            </div>
+            <a class="privacy-policy-link" id="showPrivacyPolicy">Privacy Policy</a>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div class="modal" id="privacyPolicyModal">
+        <div class="modal-content">
+            <button class="close-btn" id="closePrivacyPolicy">×</button>
+            <h2>Privacy Policy</h2>
+            <div class="privacy-policy-content">
+                <p>Vyra respects your privacy and is committed to protecting your personal information. This Privacy Policy outlines how we collect, use, and safeguard your data:</p>
+                <ul>
+                    <li><strong>Information We Collect:</strong> We collect your name, email, state, and subscription preferences to provide personalized travel recommendations.</li>
+                    <li><strong>How We Use Your Data:</strong> Your information is used to authenticate your account, display relevant services, and send optional email updates.</li>
+                    <li><strong>Data Storage:</strong> Your data is stored securely using Firebase Authentication and local browser storage.</li>
+                    <li><strong>Sharing:</strong> We do not share your personal information with third parties without your consent, except as required by law.</li>
+                    <li><strong>Your Rights:</strong> You can update your state, delete your account, or opt out of email updates at any time.</li>
+                    <li><strong>Contact Us:</strong> For questions, contact us at support@vyra.com (replace with your actual contact).</li>
+                </ul>
+                <p>This is a placeholder policy. Update it with your specific terms before going live.</p>
             </div>
         </div>
     </div>
 
-    <!-- Dashboard (shown after signup) -->
+    <!-- Dashboard -->
     <div class="dashboard" id="dashboard">
         <div class="user-header">
             <div class="user-avatar" id="userAvatar">U</div>
@@ -389,16 +640,32 @@ input:valid {
                 <p id="userLocation">State, Nigeria</p>
             </div>
         </div>
-
         <div class="services-section">
             <h3>Popular Services in <span id="userStateDisplay">Your State</span></h3>
-            <div class="services-scroll" id="servicesScroll">
-                <!-- Service cards will be added dynamically -->
-            </div>
+            <div class="services-scroll" id="servicesScroll"></div>
         </div>
+        <button class="logout-btn" id="logoutBtn">Log Out</button>
     </div>
 
-    <script>
+    <script type="module">
+        // Import Firebase SDK
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, deleteUser } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
+
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBq3XJdfLVk2UpA2dQ7x89xxaX1Q1Zt9Zw",
+            authDomain: "vyra-2387a.firebaseapp.com",
+            projectId: "vyra-2387a",
+            storageBucket: "vyra-2387a.firebasestorage.app",
+            messagingSenderId: "31537716341",
+            appId: "1:31537716341:web:697b1206f2027db7f26c3c"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
         // Transport Companies by State
         const transportCompaniesByState = {
             "Lagos": [
@@ -454,6 +721,10 @@ input:valid {
         // Initialize reviews
         function initReviews() {
             const container = document.getElementById('reviewsContainer');
+            if (!container) {
+                console.error('Reviews container not found');
+                return;
+            }
             reviews.forEach((review, index) => {
                 const reviewDiv = document.createElement('div');
                 reviewDiv.className = 'review';
@@ -468,74 +739,70 @@ input:valid {
             let currentReview = 0;
             setInterval(() => {
                 const allReviews = document.querySelectorAll('.review');
+                if (allReviews.length === 0) return;
                 allReviews[currentReview].classList.remove('active');
                 currentReview = (currentReview + 1) % allReviews.length;
                 allReviews[currentReview].classList.add('active');
             }, 5000);
         }
 
-        // Handle form submission
-        document.getElementById('signupForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // Stop default form submission
-
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const state = document.getElementById('state').value;
-
-            // Validate email format
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            const emailError = document.getElementById('emailError');
-            if (!emailRegex.test(email)) {
-                emailError.textContent = 'Please enter a valid email address.';
-                return;
+        // Toggle between signup and login forms
+        function showSignupForm() {
+            const signupForm = document.getElementById('signupForm');
+            const loginForm = document.getElementById('loginForm');
+            if (signupForm && loginForm) {
+                signupForm.style.display = 'block';
+                loginForm.style.display = 'none';
             } else {
-                emailError.textContent = '';
+                console.error('Signup or login form not found');
             }
+        }
 
-            // Save user data to localStorage
-            localStorage.setItem('vyra_user', JSON.stringify({ name, email, state }));
-
-            // Submit form data to Formsubmit
-            fetch(this.action, {
-                method: 'POST',
-                body: new FormData(this),
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Form submission failed');
-                }
-                console.log('Form submitted successfully');
-                // Show dashboard
-                showDashboard(name, state);
-            })
-            .catch(error => {
-                console.error('Error submitting form:', error);
-                // Show dashboard even if submission fails
-                showDashboard(name, state);
-            });
-        });
+        function showLoginForm() {
+            const signupForm = document.getElementById('signupForm');
+            const loginForm = document.getElementById('loginForm');
+            if (signupForm && loginForm) {
+                signupForm.style.display = 'none';
+                loginForm.style.display = 'block';
+            } else {
+                console.error('Signup or login form not found');
+            }
+        }
 
         // Show dashboard with user info
         function showDashboard(name, state) {
-            document.getElementById('welcomeModal').style.display = 'none';
-            document.getElementById('userName').textContent = name;
-            document.getElementById('userLocation').textContent = `${state}, Nigeria`;
-            document.getElementById('userStateDisplay').textContent = state;
-            document.getElementById('userAvatar').textContent = name.charAt(0).toUpperCase();
+            const welcomeModal = document.getElementById('welcomeModal');
+            const dashboard = document.getElementById('dashboard');
+            const userName = document.getElementById('userName');
+            const userLocation = document.getElementById('userLocation');
+            const userStateDisplay = document.getElementById('userStateDisplay');
+            const userAvatar = document.getElementById('userAvatar');
+
+            if (!welcomeModal || !dashboard || !userName || !userLocation || !userStateDisplay || !userAvatar) {
+                console.error('Dashboard elements not found');
+                return;
+            }
+
+            welcomeModal.style.display = 'none';
+            userName.textContent = name || 'Guest';
+            userLocation.textContent = state ? `${state}, Nigeria` : 'Nigeria';
+            userStateDisplay.textContent = state || 'Your State';
+            userAvatar.textContent = name && typeof name === 'string' && name.length > 0 ? name.charAt(0).toUpperCase() : 'U';
+            console.log(`Showing dashboard for state: ${state}`);
             loadServices(state);
-            document.getElementById('dashboard').style.display = 'block';
+            dashboard.style.display = 'block';
         }
 
         // Load services for the selected state
         function loadServices(state) {
             const servicesContainer = document.getElementById('servicesScroll');
+            if (!servicesContainer) {
+                console.error('Services container not found');
+                return;
+            }
             servicesContainer.innerHTML = '';
             const services = transportCompaniesByState[state] || transportCompaniesByState['Default'];
+            console.log(`Loading services for state: ${state}, Companies: ${services.map(s => s.name).join(', ')}`);
             services.forEach(service => {
                 const card = document.createElement('div');
                 card.className = 'service-card';
@@ -548,9 +815,13 @@ input:valid {
             autoScrollServices();
         }
 
-        // Auto-scroll the services horizontally
+        // Auto-scroll the services
         function autoScrollServices() {
             const container = document.getElementById('servicesScroll');
+            if (!container) {
+                console.error('Services scroll container not found');
+                return;
+            }
             let scrollAmount = 0;
             const scrollStep = 1;
             const scrollDelay = 30;
@@ -567,19 +838,409 @@ input:valid {
             setTimeout(scroll, 2000);
         }
 
-        // Check if user is already signed in
+        // Check if user is logged in
         function checkLoggedIn() {
             const userData = localStorage.getItem('vyra_user');
             if (userData) {
-                const { name, state } = JSON.parse(userData);
-                showDashboard(name, state);
+                try {
+                    const { name, state } = JSON.parse(userData);
+                    if (name && state) {
+                        showDashboard(name, state);
+                    } else {
+                        console.warn('Invalid user data in localStorage');
+                    }
+                } catch (error) {
+                    console.error('Error parsing vyra_user:', error);
+                }
             }
         }
 
-        // Initialize the page
+        // Initialize page and set up event listeners
         window.addEventListener('DOMContentLoaded', () => {
+            // Initialize reviews
             initReviews();
+
+            // Check logged-in status
             checkLoggedIn();
+
+            // Get form and modal elements
+            const signupForm = document.getElementById('signupForm');
+            const loginForm = document.getElementById('loginForm');
+            const passwordResetForm = document.getElementById('passwordResetForm');
+            const showLogin = document.getElementById('showLogin');
+            const showSignup = document.getElementById('showSignup');
+            const forgotPassword = document.getElementById('forgotPassword');
+            const passwordResetModal = document.getElementById('passwordResetModal');
+            const closePasswordReset = document.getElementById('closePasswordReset');
+            const cancelPasswordReset = document.getElementById('cancelPasswordReset');
+            const userAvatar = document.getElementById('userAvatar');
+            const userProfileModal = document.getElementById('userProfileModal');
+            const closeProfile = document.getElementById('closeProfile');
+            const profileState = document.getElementById('profileState');
+            const profileLogout = document.getElementById('profileLogout');
+            const profileDelete = document.getElementById('profileDelete');
+            const showPrivacyPolicy = document.getElementById('showPrivacyPolicy');
+            const privacyPolicyModal = document.getElementById('privacyPolicyModal');
+            const closePrivacyPolicy = document.getElementById('closePrivacyPolicy');
+            const logoutBtn = document.getElementById('logoutBtn');
+
+            if (!signupForm || !loginForm || !passwordResetForm || !showLogin || !showSignup || !forgotPassword || !passwordResetModal || !closePasswordReset || !cancelPasswordReset || !userAvatar || !userProfileModal || !closeProfile || !profileState || !profileLogout || !profileDelete || !showPrivacyPolicy || !privacyPolicyModal || !closePrivacyPolicy || !logoutBtn) {
+                console.error('One or more elements not found');
+                return;
+            }
+
+            // Handle signup form submission with Firebase
+            signupForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                console.log('Signup form submitted');
+
+                const nameInput = document.getElementById('name');
+                const emailInput = document.getElementById('email');
+                const passwordInput = document.getElementById('password');
+                const stateInput = document.getElementById('state');
+                const subscribeInput = document.getElementById('subscribe');
+                const emailError = document.getElementById('emailError');
+
+                if (!nameInput || !emailInput || !passwordInput || !stateInput || !subscribeInput || !emailError) {
+                    console.error('Signup form inputs not found');
+                    return;
+                }
+
+                const name = nameInput.value.trim();
+                const email = emailInput.value.trim();
+                const password = passwordInput.value;
+                const state = stateInput.value;
+                const subscribe = subscribeInput.checked;
+
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    emailError.textContent = 'Please enter a valid email address.';
+                    return;
+                }
+
+                if (!name) {
+                    emailError.textContent = 'Please enter your full name.';
+                    return;
+                }
+
+                if (!state) {
+                    emailError.textContent = 'Please select a state.';
+                    return;
+                }
+
+                emailError.textContent = '';
+
+                try {
+                    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                    console.log('User signed up:', userCredential.user);
+
+                    // Store additional user data in localStorage
+                    const users = JSON.parse(localStorage.getItem('vyra_users') || '{}');
+                    users[email] = { name, email, state, subscribe };
+                    localStorage.setItem('vyra_users', JSON.stringify(users));
+                    localStorage.setItem('vyra_user', JSON.stringify({ name, email, state, subscribe }));
+                    showDashboard(name, state);
+                } catch (error) {
+                    console.error('Signup error:', error);
+                    switch (error.code) {
+                        case 'auth/email-already-in-use':
+                            emailError.textContent = 'Email already registered. Please log in.';
+                            break;
+                        case 'auth/weak-password':
+                            emailError.textContent = 'Password is too weak. Please use at least 6 characters.';
+                            break;
+                        case 'auth/invalid-email':
+                            emailError.textContent = 'Invalid email format.';
+                            break;
+                        case 'auth/operation-not-allowed':
+                            emailError.textContent = 'Email/Password authentication is not enabled. Contact support.';
+                            break;
+                        default:
+                            emailError.textContent = 'An error occurred. Please try again.';
+                    }
+                }
+            });
+
+            // Handle login form submission with Firebase
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                console.log('Login form submitted');
+
+                const emailInput = document.getElementById('loginEmail');
+                const passwordInput = document.getElementById('loginPassword');
+                const emailError = document.getElementById('loginEmailError');
+
+                if (!emailInput || !passwordInput || !emailError) {
+                    console.error('Login form inputs not found');
+                    return;
+                }
+
+                const email = emailInput.value.trim();
+                const password = passwordInput.value;
+
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    emailError.textContent = 'Please enter a valid email address.';
+                    return;
+                }
+
+                emailError.textContent = '';
+
+                try {
+                    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                    console.log('User logged in:', userCredential.user);
+
+                    // Retrieve user data from localStorage
+                    const users = JSON.parse(localStorage.getItem('vyra_users') || '{}');
+                    if (!users[email]) {
+                        emailError.textContent = 'User data not found. Please sign up again.';
+                        return;
+                    }
+
+                    const { name, state, subscribe } = users[email];
+                    localStorage.setItem('vyra_user', JSON.stringify({ name, email, state, subscribe }));
+                    showDashboard(name, state);
+                } catch (error) {
+                    console.error('Login error:', error);
+                    switch (error.code) {
+                        case 'auth/user-not-found':
+                            emailError.textContent = 'Email not found. Please sign up.';
+                            break;
+                        case 'auth/wrong-password':
+                            emailError.textContent = 'Incorrect password.';
+                            break;
+                        case 'auth/invalid-email':
+                            emailError.textContent = 'Invalid email format.';
+                            break;
+                        case 'auth/too-many-requests':
+                            emailError.textContent = 'Too many attempts. Try again later.';
+                            break;
+                        default:
+                            emailError.textContent = 'An error occurred. Please try again.';
+                    }
+                }
+            });
+
+            // Handle password reset modal
+            forgotPassword.addEventListener('click', () => {
+                console.log('Forgot password clicked');
+                passwordResetModal.style.display = 'flex';
+                document.getElementById('resetEmail').value = '';
+                document.getElementById('resetEmailError').textContent = '';
+                document.getElementById('resetSuccess').textContent = '';
+            });
+
+            passwordResetForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                console.log('Password reset form submitted');
+
+                const emailInput = document.getElementById('resetEmail');
+                const emailError = document.getElementById('resetEmailError');
+                const successMessage = document.getElementById('resetSuccess');
+
+                if (!emailInput || !emailError || !successMessage) {
+                    console.error('Password reset form inputs not found');
+                    return;
+                }
+
+                const email = emailInput.value.trim();
+
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    emailError.textContent = 'Please enter a valid email address.';
+                    successMessage.textContent = '';
+                    return;
+                }
+
+                emailError.textContent = '';
+                successMessage.textContent = '';
+
+                try {
+                    await sendPasswordResetEmail(auth, email);
+                    successMessage.textContent = 'Password reset email sent. Check your inbox (and spam folder).';
+                    emailInput.value = '';
+                } catch (error) {
+                    console.error('Password reset error:', error);
+                    switch (error.code) {
+                        case 'auth/user-not-found':
+                            emailError.textContent = 'No user found with this email.';
+                            break;
+                        case 'auth/invalid-email':
+                            emailError.textContent = 'Invalid email format.';
+                            break;
+                        default:
+                            emailError.textContent = 'An error occurred. Please try again.';
+                    }
+                }
+            });
+
+            closePasswordReset.addEventListener('click', () => {
+                passwordResetModal.style.display = 'none';
+            });
+
+            cancelPasswordReset.addEventListener('click', () => {
+                passwordResetModal.style.display = 'none';
+            });
+
+            passwordResetModal.addEventListener('click', (e) => {
+                if (e.target === passwordResetModal) {
+                    passwordResetModal.style.display = 'none';
+                }
+            });
+
+            // Handle user profile modal
+            userAvatar.addEventListener('click', () => {
+                console.log('User avatar clicked');
+                const userData = JSON.parse(localStorage.getItem('vyra_user') || '{}');
+                if (!userData.name || !userData.email || !userData.state) {
+                    console.error('User data not found');
+                    return;
+                }
+
+                document.getElementById('profileName').textContent = userData.name;
+                document.getElementById('profileEmail').textContent = userData.email;
+                profileState.value = userData.state;
+                userProfileModal.style.display = 'flex';
+            });
+
+            profileState.addEventListener('change', () => {
+                const newState = profileState.value;
+                if (!newState) {
+                    console.warn('No state selected');
+                    return;
+                }
+
+                const userData = JSON.parse(localStorage.getItem('vyra_user') || '{}');
+                if (!userData.email) {
+                    console.error('User email not found');
+                    return;
+                }
+
+                console.log(`Updating state to: ${newState}`);
+                userData.state = newState;
+                const users = JSON.parse(localStorage.getItem('vyra_users') || '{}');
+                if (users[userData.email]) {
+                    users[userData.email].state = newState;
+                    localStorage.setItem('vyra_users', JSON.stringify(users));
+                }
+                localStorage.setItem('vyra_user', JSON.stringify(userData));
+                showDashboard(userData.name, newState);
+                userProfileModal.style.display = 'none';
+            });
+
+            profileLogout.addEventListener('click', async () => {
+                console.log('Profile logout clicked');
+                try {
+                    await auth.signOut();
+                    localStorage.removeItem('vyra_user');
+                    document.getElementById('dashboard').style.display = 'none';
+                    document.getElementById('welcomeModal').style.display = 'flex';
+                    showSignupForm();
+                    const loginEmail = document.getElementById('loginEmail');
+                    const loginPassword = document.getElementById('loginPassword');
+                    const loginEmailError = document.getElementById('loginEmailError');
+                    if (loginEmail && loginPassword && loginEmailError) {
+                        loginEmail.value = '';
+                        loginPassword.value = '';
+                        loginEmailError.textContent = '';
+                    }
+                    userProfileModal.style.display = 'none';
+                } catch (error) {
+                    console.error('Logout error:', error);
+                    alert('An error occurred during logout. Please try again.');
+                }
+            });
+
+            profileDelete.addEventListener('click', async () => {
+                if (!confirm('Are you sure you want to delete your account? This cannot be undone.')) {
+                    return;
+                }
+
+                console.log('Delete account clicked');
+                const user = auth.currentUser;
+                if (!user) {
+                    alert('No user is currently signed in.');
+                    return;
+                }
+
+                try {
+                    await deleteUser(user);
+                    console.log('User account deleted');
+
+                    const userData = JSON.parse(localStorage.getItem('vyra_user') || '{}');
+                    if (userData.email) {
+                        const users = JSON.parse(localStorage.getItem('vyra_users') || '{}');
+                        delete users[userData.email];
+                        localStorage.setItem('vyra_users', JSON.stringify(users));
+                    }
+                    localStorage.removeItem('vyra_user');
+
+                    document.getElementById('dashboard').style.display = 'none';
+                    document.getElementById('welcomeModal').style.display = 'flex';
+                    showSignupForm();
+                    userProfileModal.style.display = 'none';
+                } catch (error) {
+                    console.error('Delete account error:', error);
+                    if (error.code === 'auth/requires-recent-login') {
+                        alert('Please log out and log in again to delete your account.');
+                    } else {
+                        alert('An error occurred while deleting your account. Please try again.');
+                    }
+                }
+            });
+
+            closeProfile.addEventListener('click', () => {
+                userProfileModal.style.display = 'none';
+            });
+
+            userProfileModal.addEventListener('click', (e) => {
+                if (e.target === userProfileModal) {
+                    userProfileModal.style.display = 'none';
+                }
+            });
+
+            // Handle privacy policy modal
+            showPrivacyPolicy.addEventListener('click', () => {
+                console.log('Privacy policy clicked');
+                privacyPolicyModal.style.display = 'flex';
+            });
+
+            closePrivacyPolicy.addEventListener('click', () => {
+                privacyPolicyModal.style.display = 'none';
+            });
+
+            privacyPolicyModal.addEventListener('click', (e) => {
+                if (e.target === privacyPolicyModal) {
+                    privacyPolicyModal.style.display = 'none';
+                }
+            });
+
+            // Handle logout from dashboard
+            logoutBtn.addEventListener('click', async () => {
+                console.log('Logout clicked');
+                try {
+                    await auth.signOut();
+                    localStorage.removeItem('vyra_user');
+                    document.getElementById('dashboard').style.display = 'none';
+                    document.getElementById('welcomeModal').style.display = 'flex';
+                    showSignupForm();
+                    const loginEmail = document.getElementById('loginEmail');
+                    const loginPassword = document.getElementById('loginPassword');
+                    const loginEmailError = document.getElementById('loginEmailError');
+                    if (loginEmail && loginPassword && loginEmailError) {
+                        loginEmail.value = '';
+                        loginPassword.value = '';
+                        loginEmailError.textContent = '';
+                    }
+                } catch (error) {
+                    console.error('Logout error:', error);
+                    alert('An error occurred during logout. Please try again.');
+                }
+            });
+
+            // Form toggle event listeners
+            showLogin.addEventListener('click', showLoginForm);
+            showSignup.addEventListener('click', showSignupForm);
         });
     </script>
 </body>
