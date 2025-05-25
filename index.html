@@ -276,7 +276,6 @@
             }
         }
 
-
         @media (max-width: 480px) {
     .welcome-text {
         font-size: 1rem;
@@ -296,93 +295,90 @@ input:valid {
     </style>
 </head>
 <body>
-
-
     <!-- Welcome/Signup Modal -->
-   <!-- Welcome/Signup Modal -->
-<div class="welcome-modal" id="welcomeModal">
-    <div class="modal-scroll-content">
-        <div class="logo-container">
-            <div class="logo">VYRA</div>
-        </div>
-        <p class="welcome-text">
-            Your smart companion for intercity travel in Nigeria.
-            Get real-time metrics and recommendations for the best transport services.
-        </p>
-        <form class="signup-form" id="signupForm" action="https://formsubmit.co/vyraintercitymetrics@gmail.com" method="POST">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_subject" value="New Vyra Signup">
-    <input type="hidden" name="_next" value=""> <!-- Prevents redirect -->
-    <div class="form-group">
-        <label for="name">Full Name</label>
-        <input type="text" id="name" name="name" required>
-    </div>
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
-        <div class="error-message" id="emailError" style="color: red; font-size: 0.9rem; margin-top: 5px;"></div>
-    </div>
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" required>
-    </div>
-    <div class="form-group">
-        <label for="state">State</label>
-        <select id="state" name="state" required>
-            <option value="">Select your state</option>
-            <option value="Abia">Abia</option>
-            <option value="Adamawa">Adamawa</option>
-            <option value="Akwa Ibom">Akwa Ibom</option>
-            <option value="Anambra">Anambra</option>
-            <option value="Bauchi">Bauchi</option>
-            <option value="Bayelsa">Bayelsa</option>
-            <option value="Benue">Benue</option>
-            <option value="Borno">Borno</option>
-            <option value="Cross River">Cross River</option>
-            <option value="Delta">Delta</option>
-            <option value="Ebonyi">Ebonyi</option>
-            <option value="Edo">Edo</option>
-            <option value="Ekiti">Ekiti</option>
-            <option value="Enugu">Enugu</option>
-            <option value="Gombe">Gombe</option>
-            <option value="Imo">Imo</option>
-            <option value="Jigawa">Jigawa</option>
-            <option value="Kaduna">Kaduna</option>
-            <option value="Kano">Kano</option>
-            <option value="Katsina">Katsina</option>
-            <option value="Kebbi">Kebbi</option>
-            <option value="Kogi">Kogi</option>
-            <option value="Kwara">Kwara</option>
-            <option value="Lagos">Lagos</option>
-            <option value="Nasarawa">Nasarawa</option>
-            <option value="Niger">Niger</option>
-            <option value="Ogun">Ogun</option>
-            <option value="Ondo">Ondo</option>
-            <option value="Osun">Osun</option>
-            <option value="Oyo">Oyo</option>
-            <option value="Plateau">Plateau</option>
-            <option value="Rivers">Rivers</option>
-            <option value="Sokoto">Sokoto</option>
-            <option value="Taraba">Taraba</option>
-            <option value="Yobe">Yobe</option>
-            <option value="Zamfara">Zamfara</option>
-            <option value="Abuja">Abuja</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label>
-            <input type="checkbox" name="subscribe" value="yes" checked>
-            I want to receive email updates and travel tips about intercity services.
-        </label>
-    </div>
-    <button type="submit" class="submit-btn">Sign Up</button>
-</form>
+    <div class="welcome-modal" id="welcomeModal">
+        <div class="modal-scroll-content">
+            <div class="logo-container">
+                <div class="logo">VYRA</div>
+            </div>
+            <p class="welcome-text">
+                Your smart companion for intercity travel in Nigeria.
+                Get real-time metrics and recommendations for the best transport services.
+            </p>
+            <form class="signup-form" id="signupForm" action="https://formsubmit.co/vyraintercitymetrics@gmail.com" method="POST">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_subject" value="New Vyra Signup">
+                <input type="hidden" name="_next" value="">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="error-message" id="emailError" style="color: red; font-size: 0.9rem; margin-top: 5px;"></div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="state">State</label>
+                    <select id="state" name="state" required>
+                        <option value="">Select your state</option>
+                        <option value="Abia">Abia</option>
+                        <option value="Adamawa">Adamawa</option>
+                        <option value="Akwa Ibom">Akwa Ibom</option>
+                        <option value="Anambra">Anambra</option>
+                        <option value="Bauchi">Bauchi</option>
+                        <option value="Bayelsa">Bayelsa</option>
+                        <option value="Benue">Benue</option>
+                        <option value="Borno">Borno</option>
+                        <option value="Cross River">Cross River</option>
+                        <option value="Delta">Delta</option>
+                        <option value="Ebonyi">Ebonyi</option>
+                        <option value="Edo">Edo</option>
+                        <option value="Ekiti">Ekiti</option>
+                        <option value="Enugu">Enugu</option>
+                        <option value="Gombe">Gombe</option>
+                        <option value="Imo">Imo</option>
+                        <option value="Jigawa">Jigawa</option>
+                        <option value="Kaduna">Kaduna</option>
+                        <option value="Kano">Kano</option>
+                        <option value="Katsina">Katsina</option>
+                        <option value="Kebbi">Kebbi</option>
+                        <option value="Kogi">Kogi</option>
+                        <option value="Kwara">Kwara</option>
+                        <option value="Lagos">Lagos</option>
+                        <option value="Nasarawa">Nasarawa</option>
+                        <option value="Niger">Niger</option>
+                        <option value="Ogun">Ogun</option>
+                        <option value="Ondo">Ondo</option>
+                        <option value="Osun">Osun</option>
+                        <option value="Oyo">Oyo</option>
+                        <option value="Plateau">Plateau</option>
+                        <option value="Rivers">Rivers</option>
+                        <option value="Sokoto">Sokoto</option>
+                        <option value="Taraba">Taraba</option>
+                        <option value="Yobe">Yobe</option>
+                        <option value="Zamfara">Zamfara</option>
+                        <option value="Abuja">Abuja</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="subscribe" value="yes" checked>
+                        I want to receive email updates and travel tips about intercity services.
+                    </label>
+                </div>
+                <button type="submit" class="submit-btn">Sign Up</button>
+            </form>
 
-        <div class="reviews-container" id="reviewsContainer">
-            <!-- Reviews will be added dynamically -->
+            <div class="reviews-container" id="reviewsContainer">
+                <!-- Reviews will be added dynamically -->
+            </div>
         </div>
     </div>
-</div>
 
     <!-- Dashboard (shown after signup) -->
     <div class="dashboard" id="dashboard">
@@ -403,7 +399,7 @@ input:valid {
     </div>
 
     <script>
-        // Transport Companies by State (simplified from your original data)
+        // Transport Companies by State
         const transportCompaniesByState = {
             "Lagos": [
                 { name: "ABC Transport", image: "https://i.ibb.co/5hXDcq5/images-7.png" },
@@ -423,7 +419,6 @@ input:valid {
                 { name: "ABC Transport", image: "https://i.ibb.co/5hXDcq5/images-7.png" },
                 { name: "Chisco Transport", image: "https://i.ibb.co/b7Yykmb/images-12.png" }
             ],
-            // Add more states as needed...
             "Default": [
                 { name: "ABC Transport", image: "https://i.ibb.co/5hXDcq5/images-7.png" },
                 { name: "God is Good Motors", image: "https://i.ibb.co/dKmkMGJ/images-11.png" },
@@ -459,8 +454,6 @@ input:valid {
         // Initialize reviews
         function initReviews() {
             const container = document.getElementById('reviewsContainer');
-
-            // Add all reviews to the container
             reviews.forEach((review, index) => {
                 const reviewDiv = document.createElement('div');
                 reviewDiv.className = 'review';
@@ -472,130 +465,69 @@ input:valid {
                 container.appendChild(reviewDiv);
             });
 
-            // Rotate reviews every 5 seconds
             let currentReview = 0;
             setInterval(() => {
                 const allReviews = document.querySelectorAll('.review');
                 allReviews[currentReview].classList.remove('active');
-
                 currentReview = (currentReview + 1) % allReviews.length;
                 allReviews[currentReview].classList.add('active');
             }, 5000);
         }
 
         // Handle form submission
-   // Handle form submission
-document.getElementById('signupForm').addEventListener('submit', function(e) {
-    e.preventDefault(); // Stop default form submission
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Stop default form submission
 
-    // Get form values
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const state = document.getElementById('state').value;
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const state = document.getElementById('state').value;
 
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        alert('Please enter a valid email address.');
-        return;
-    }
+            // Validate email format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const emailError = document.getElementById('emailError');
+            if (!emailRegex.test(email)) {
+                emailError.textContent = 'Please enter a valid email address.';
+                return;
+            } else {
+                emailError.textContent = '';
+            }
 
-    // Save user data to localStorage
-    localStorage.setItem('vyra_user', JSON.stringify({
-        name,
-        email,
-        state
-    }));
+            // Save user data to localStorage
+            localStorage.setItem('vyra_user', JSON.stringify({ name, email, state }));
 
-    // Show dashboard immediately
-    showDashboard(name, state);
-
-    // Submit form data to Formsubmit in the background
-    fetch(this.action, {
-        method: "POST",
-        body: new FormData(this),
-        headers: {
-            'Accept': 'application/json'
-        }
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Form submission failed');
-        }
-        console.log('Form submitted successfully');
-    })
-    .catch(error => {
-        console.error('Error submitting form:', error);
-        // You could show a non-intrusive notification that the form submission failed
-        // but the user is already logged in so we don't need to block them
-    });
-});
-
-function createEmailError() {
-    const container = document.getElementById('email').parentElement;
-    const div = document.createElement('div');
-    div.id = 'emailError';
-    div.style.color = 'red';
-    div.style.fontSize = '0.9rem';
-    div.style.marginTop = '5px';
-    container.appendChild(div);
-    return div;
-}
-
-    // If passes, proceed
-    const name = document.getElementById('name').value;
-    const password = document.getElementById('password').value;
-    const state = document.getElementById('state').value;
-
-    localStorage.setItem('vyra_user', JSON.stringify({ name, email, state }));
-
-    // Show dashboard
-    showDashboard(name, state);
-
-    // Optional: Send data manually to FormSubmit (not required if using hidden fields)
-    fetch(this.action, {
-        method: "POST",
-        body: new FormData(this)
-    }).then(() => {
-        console.log("Form submitted successfully");
-    }).catch(err => {
-        console.error("Form submission failed", err);
-    });
-});
-
-    // If passes, proceed with saving data and showing dashboard
-    const name = document.getElementById('name').value;
-    const password = document.getElementById('password').value;
-    const state = document.getElementById('state').value;
-
-    localStorage.setItem('vyra_user', JSON.stringify({
-        name,
-        email,
-        state
-    }));
-
-    this.submit(); // Submit form to FormSubmit
-    showDashboard(name, state);
-});
+            // Submit form data to Formsubmit
+            fetch(this.action, {
+                method: 'POST',
+                body: new FormData(this),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Form submission failed');
+                }
+                console.log('Form submitted successfully');
+                // Show dashboard
+                showDashboard(name, state);
+            })
+            .catch(error => {
+                console.error('Error submitting form:', error);
+                // Show dashboard even if submission fails
+                showDashboard(name, state);
+            });
+        });
 
         // Show dashboard with user info
         function showDashboard(name, state) {
-            // Hide welcome modal
             document.getElementById('welcomeModal').style.display = 'none';
-
-            // Set user info
             document.getElementById('userName').textContent = name;
             document.getElementById('userLocation').textContent = `${state}, Nigeria`;
             document.getElementById('userStateDisplay').textContent = state;
-
-            // Set avatar initial
             document.getElementById('userAvatar').textContent = name.charAt(0).toUpperCase();
-
-            // Load services for the user's state
             loadServices(state);
-
-            // Show dashboard
             document.getElementById('dashboard').style.display = 'block';
         }
 
@@ -603,11 +535,7 @@ function createEmailError() {
         function loadServices(state) {
             const servicesContainer = document.getElementById('servicesScroll');
             servicesContainer.innerHTML = '';
-
-            // Get services for the state or default if not found
             const services = transportCompaniesByState[state] || transportCompaniesByState['Default'];
-
-            // Add service cards
             services.forEach(service => {
                 const card = document.createElement('div');
                 card.className = 'service-card';
@@ -617,8 +545,6 @@ function createEmailError() {
                 `;
                 servicesContainer.appendChild(card);
             });
-
-            // Auto-scroll the services
             autoScrollServices();
         }
 
@@ -632,17 +558,12 @@ function createEmailError() {
             function scroll() {
                 container.scrollLeft += scrollStep;
                 scrollAmount += scrollStep;
-
-                // Reset scroll when reaching end
                 if (scrollAmount >= container.scrollWidth - container.clientWidth) {
                     container.scrollLeft = 0;
                     scrollAmount = 0;
                 }
-
                 setTimeout(scroll, scrollDelay);
             }
-
-            // Start scrolling after a delay
             setTimeout(scroll, 2000);
         }
 
@@ -660,9 +581,6 @@ function createEmailError() {
             initReviews();
             checkLoggedIn();
         });
-
-
-
     </script>
 </body>
 </html>
